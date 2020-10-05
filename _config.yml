@@ -5,11 +5,11 @@
 # Site
 title: 不风的羁
 subtitle: 我是真的菜
-description: 
+description:
 keywords:
 author: leoXuLei
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
@@ -106,3 +106,19 @@ deploy:
   type: git
   repo: https://github.com/leoXuLei/leoXuLei.github.io.git
   branch: master
+
+# Search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+# symbols_count_time
+symbols_count_time:
+  #文章内是否显示
+  symbols: true
+  time: true
+  # 网页底部是否显示
+  total_symbols: false
+  total_time: false
