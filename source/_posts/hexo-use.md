@@ -1,10 +1,15 @@
 ---
 title: Hexo 安装配置使用
+categories:
+  - 工具
+tags: [Hexo]
 ---
 
 ## 什么是 Hexo？
 
 Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
+
+<!--more-->
 
 ## 快速开始
 
@@ -160,7 +165,10 @@ theme: next
 
 打开 `主题配置文件`，搜索 menu，把 tags 和 categories 前面的 `#` 删除，如下：
 
+**启用需要的菜单：**
+
 ```bash
+# || 前面是路径,后面是图标icon
 menu:
   home: / || fa fa-home
   tags: /tags/ || fa fa-tags
@@ -170,6 +178,60 @@ menu:
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
+```
+
+**手动创建对应页面：**
+
+```bash
+hexo new page 'categories'
+hexo new page 'tags'
+hexo new page 'about'
+```
+
+**\source 路径下对应名称的 index.md 增加 type 属性：**
+
+```bash
+---
+title: about
+date: 2020-10-06 09:37:53
+type: about
+---
+```
+
+```bash
+---
+title: categories
+date: 2020-10-06 09:36:58
+type: categories
+---
+```
+
+```bash
+---
+title: tags
+date: 2020-10-06 09:37:29
+type: tags
+---
+```
+
+**新建一篇文章：**
+
+```bash
+hexo new [layout] <title>
+
+hexo new "hexo-use"
+```
+
+**编辑\source_posts\hexo-use.md：**
+
+```bash
+---
+title: Hexo 安装配置使用
+categories:
+  - 工具
+tags:
+  - Hexo
+---
 ```
 
 ### 切换主题样式
@@ -253,6 +315,42 @@ symbols_count_time:
   total_time: true
 ```
 
+### 设置首页只显示部分摘要（不显示全文）
+
+Next 默认是会显示全文的，这样显然很不方便，因此需要一些方法去只显示前面一部分。
+
+**修改配置：**
+首先需要在 Next 主题的\_config.yml 中把设置打开：(默认打开)
+
+```bash
+# Automatically excerpt description in homepage as preamble text.
+excerpt_description: true
+```
+
+之后有两种办法
+
+- 方法一：写概述
+  在文章的 `front-matter` 中添加 `description`，其中 `description` 中的内容就会被显示在首页上，其余一律不显示。
+  ```bash
+  ---
+  title: 让首页显示部分内容
+  date: 2020-02-23 22:55:10
+  description: 这是显示在首页的概述，正文内容均会被隐藏。
+  ---
+  ```
+  比较不方便的是还得写一下概述，很多时候会懒得写概述，于是就需要第二种方法了。
+- 方法二：文章截断
+
+  在需要截断的地方加入：
+
+  ```bash
+  <!--more-->
+  ```
+
+  首页就会显示这条以上的所有内容，隐藏接下来的所有内容。
+
+  这个明显就方便很多，但当然有利有弊，比如开头都是废话首页看着就不是很好看，因此我一般会先选择方法二，如果感觉文章前面的写的不太好再用方法一。
+
 ## 参考
 
 - [Hexo 官网文档](https://hexo.io/zh-cn/docs/)
@@ -260,3 +358,5 @@ symbols_count_time:
 - [Next 官方文档](https://theme-next.iissnan.com/)
 - [Hexo-Next 主题博客个性化配置超详细，超全面(两万字)](https://blog.csdn.net/as480133937/article/details/100138838/)
 - [Hexo Next 主题配置](https://www.jianshu.com/p/4b54b1b350c6)
+- [Hexo的Next主题详细配置](https://www.jianshu.com/p/3a05351a37dc)
+- [设置hexo首页只显示部分摘要(不显示全文)](https://blog.csdn.net/yueyue200830/article/details/104470646)
